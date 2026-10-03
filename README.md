@@ -1,7 +1,13 @@
-# Model-reliability-benchmark
+
 # Model Reliability Benchmark
 
-This project is a small experiment to see how a simple machine learning model behaves when some of its test inputs are changed.
+This is a small experiment I did to understand how a model behaves when its test inputs are changed.
+
+## Why I did this
+
+I wanted to see whether a model with good accuracy on normal test data would still behave similarly when the inputs were slightly different.
+
+Instead of using a complicated model, I chose Logistic Regression so that I could focus more on understanding what happens during the reliability testing.
 
 ## Dataset
 
@@ -21,28 +27,24 @@ I created a binary target using the median popularity of the movies.
 
 I used **Logistic Regression** as the baseline model.
 
-The data was split into:
+I split the data into 80% training and 20% testing using `random_state=42`.
 
-* 80% training data
-* 20% test data
-* `random_state=42`
-
-The model was trained once on the training data.
+The model was trained once and then kept fixed for all the tests.
 
 The clean test accuracy was **93.24%**.
 
-## Perturbations
+## What I tested
 
-After training the model, I changed two features in the test set and checked the accuracy again.
+I wanted to see what happens if two of the input features are changed after the model has already been trained.
 
-I used four perturbations:
+I used four controlled perturbations:
 
-* Runtime decreased by 20%
-* Runtime increased by 20%
-* Vote count decreased by 20%
-* Vote count increased by 20%
+* Runtime × 0.8
+* Runtime × 1.2
+* Vote count × 0.8
+* Vote count × 1.2
 
-The model was not retrained after making these changes.
+The model was **not retrained** after changing the test inputs.
 
 ## Results
 
@@ -54,29 +56,37 @@ The model was not retrained after making these changes.
 | Vote count −20% |   91.36% |
 | Vote count +20% |   92.92% |
 
-The model stayed above 91% accuracy for all four perturbations. However, the accuracy changed depending on which feature was modified.
+## What I noticed
 
-The biggest decrease was when **vote count was reduced by 20%**, where accuracy went from 93.24% to 91.36%.
+The result I found interesting was that the accuracy did not always decrease when I changed the inputs.
+
+For example, reducing runtime by 20% slightly increased the accuracy from 93.24% to 93.76%.
+
+On the other hand, reducing vote count by 20% decreased the accuracy to 91.36%.
+
+So the model did not react to every feature change in the same way. This made me realize that looking only at the clean accuracy does not tell the whole story about how a model behaves.
 
 ## What I learned
 
-The clean accuracy by itself does not show how a model behaves when the inputs change.
+Before doing this experiment, I mostly thought of accuracy as the main way to judge whether a model was working well.
 
-In this experiment, some changes had very little effect, while others caused a noticeable drop in accuracy. The effect was also not exactly the same when a feature was increased versus decreased.
+This experiment made me think more about what happens when the data given to a model changes.
+
+I also learned that a reliability test does not have to produce a dramatic failure to be useful. Even small changes in performance can tell us something about the model's sensitivity.
 
 ## Limitations
 
-This is a small experiment using one dataset and one model.
+This is a small experiment with one dataset and one model.
 
-The perturbations are artificial feature changes, so they may not represent a real-world distribution shift.
+The perturbations are artificial changes to the feature values, so they do not necessarily represent a real-world distribution shift.
 
-Also, the target is based on movie popularity, and some of the input features may be related to popularity. This is something that should be considered when interpreting the results.
+Also, the target is based on movie popularity, and some of the input features may be related to popularity. This is important when interpreting the results.
 
-The benchmark only uses accuracy, so it does not evaluate other aspects such as model calibration or confidence.
+I only used accuracy in this version, so I did not evaluate confidence or calibration.
 
-## How to Run
+## Reproducibility
 
-Install the required Python packages:
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
