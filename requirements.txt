@@ -1,4 +1,4 @@
 #requirements.txt
-pandas
-scikit-learn
-jupyter
+pandas==2.0.3
+scikit-learn==1.3.0
+jupyter==1.0.0
