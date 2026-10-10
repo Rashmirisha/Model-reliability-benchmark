@@ -144,7 +144,25 @@ I only used accuracy as the main evaluation metric in this version. I did not ev
 
 ### Requirements
 
-Install the dependencies from the repository root:
+Run the following commands from the repository root.
+
+Install the dependencies:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+```
+
+### Running the notebook
+
+1. Download `tmdb_5000_movies.csv` from the [TMDB 5000 Movie Dataset on Kaggle](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
+2. Place the CSV in the dataset location specified below.
+3. Open a terminal in the repository root and launch Jupyter Notebook:
+
+   ```bash
+   jupyter notebook
+   ```
+
+4. Open `LogisticRegression.ipynb`.
+5. Run the existing cells in order to reproduce the analysis.
+
+The notebook uses the existing train/test split and model configuration documented above. No additional perturbation experiments are required.
