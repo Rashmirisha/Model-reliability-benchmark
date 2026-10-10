@@ -24,7 +24,7 @@ The notebook originally referenced a local Windows file path. The dataset is not
 * **Source**: Download `tmdb_5000_movies.csv` from Kaggle's [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
 * **SHA-256 Hash**: `1e0584a8dd374120e4ed4f2b81f0d2bd0eb95a554708e4a350d00ed5c46d2825`
 
-To run the notebook, download the CSV and place it in the root folder of the repository as `tmdb_5000_movies.csv` (or inside a `data/` folder).
+To run the notebook, download `tmdb_5000_movies.csv` from the Kaggle source linked above and place it in the root folder of the repository, alongside the notebook. The notebook reads the file using the relative path `tmdb_5000_movies.csv`.
 
 ### Classification target
 
@@ -154,15 +154,18 @@ python -m pip install -r requirements.txt
 
 ### Running the notebook
 
-1. Download `tmdb_5000_movies.csv` from the [TMDB 5000 Movie Dataset on Kaggle](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
-2. Place the CSV in the dataset location specified below.
-3. Open a terminal in the repository root and launch Jupyter Notebook:
+Download `tmdb_5000_movies.csv` from the TMDB 5000 Movie Dataset on Kaggle.
 
-   ```bash
-   jupyter notebook
-   ```
+Place `tmdb_5000_movies.csv` in the repository root, alongside the notebook. The notebook reads it using the relative path `tmdb_5000_movies.csv`.
 
-4. Open `LogisticRegression.ipynb`.
-5. Run the existing cells in order to reproduce the analysis.
+Open a terminal in the repository root and launch Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open `LogisticRegression.ipynb` and run the existing cells in order to reproduce the analysis.
 
 The notebook uses the existing train/test split and model configuration documented above. No additional perturbation experiments are required.
+
+
