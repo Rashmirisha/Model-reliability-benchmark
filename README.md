@@ -19,12 +19,14 @@ The features I used are:
 
 ### Dataset acquisition and provenance
 
-The notebook originally referenced a local Windows file path. The dataset is not bundled in this repository.
+The notebook reads the dataset from a local CSV file. The dataset is not bundled in this repository.
 
-* **Source**: Download `tmdb_5000_movies.csv` from Kaggle's [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
-* **SHA-256 Hash**: `1e0584a8dd374120e4ed4f2b81f0d2bd0eb95a554708e4a350d00ed5c46d2825`
+- **Source**: Download `tmdb_5000_movies.csv` from Kaggle's [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata).
+- **SHA-256 hash**: `1e0584a8dd374120e4ed4f2b81f0d2bd0eb95a554708e4a350d00ed5c46d2825`
 
-To run the notebook, download `tmdb_5000_movies.csv` from the Kaggle source linked above and place it in the root folder of the repository, alongside the notebook. The notebook reads the file using the relative path `tmdb_5000_movies.csv`.
+I calculated the SHA-256 hash of my local `tmdb_5000_movies.csv` file using PowerShell. It matches the hash recorded above.
+
+To run the notebook, download the CSV from the Kaggle source linked above and place it in the repository root, alongside the notebook. The notebook reads the file using the relative path `tmdb_5000_movies.csv`.
 
 ### Classification target
 
@@ -151,6 +153,17 @@ Install the dependencies:
 ```bash
 python -m pip install -r requirements.txt
 ```
+### Environment record
+
+The project was developed using Jupyter Notebook. The following versions are currently installed in my Anaconda `base` environment:
+
+- Python 3.12.7
+- pandas 2.2.2
+- NumPy 1.26.4
+- scikit-learn 1.5.1
+- Jupyter Notebook 7.2.2
+
+These versions were recorded from the current environment. I have not verified that this exact environment was used to generate the original results.
 
 ### Running the notebook
 
